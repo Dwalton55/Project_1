@@ -16,21 +16,24 @@ let cpuArray = newgame.cpuArray
 let level = newgame.level
 
 let startgame = {
-welcome : function(){
+welcome : ()=>{
     //display welcom message on message html
 },
-RandomGen: function() {
+RandomGen: ()=> {
    cpuArray.push( Math.floor(Math.random() * level))
 
 },
 }
 
-turnTracker =()=> {
+
+
+turnTracker = {
     cpuTurn : true,
     playerTurn : false,
-    switcher : function {
+    switcher : ()=> {
         if(this.cpuTurn === true){
             this.playerTurn = false
+            Turns.cpuTurn
         } else{
             if(this.cpuTurn === false){
                 playerTurn = true
@@ -38,11 +41,16 @@ turnTracker =()=> {
         }
     }
 }
+let switcher = turnTracker.switcher
 
-let cpuTurn = ()=>{
-    if()
+let Turns = {
+    cpuTurn : ()=> {
+        startgame.RandomGen()
+        //update the display
+
+    },
+
 }
-
 
 
 
