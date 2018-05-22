@@ -91,10 +91,56 @@ let domHande = {
         $('.level').html(game.level)
         $('.score').html(game.score)
     },
+    flash: (colors) => {
+        colors.forEach((number, index) => {
+            console.log(index + "time through")
+            if (number === 0) {
+                setTimeout(() => {
+                    $("#red").toggleClass("redlight");
+                }, ((index * 2) + 1) * 1000);
+
+                setTimeout(() => {
+                    $("#red").toggleClass("redlight");
+                }, (index * 2) * 1000);
+                console.log('flashing red')
+
+            } else if (number === 1) {
+                setTimeout(() => {
+                    $("#blue").toggleClass("bluelight");
+                }, ((index * 2) + 1) * 1000);
+
+                setTimeout(() => {
+                    $("#blue").toggleClass("bluelight");
+                }, (index * 2) * 1000);
+                console.log('flashing blue')
+
+            } else if (number === 2) {
+                setTimeout(() => {
+                    $("#green").toggleClass("greenlight");
+                }, ((index * 2) + 1) * 1000);
+
+                setTimeout(() => {
+                    $("#green").toggleClass("greenlight");
+                }, (index * 2) * 1000);
+                console.log('flashing green')
+
+            } else if (number === 3) {
+                setTimeout(() => {
+                    $("#yellow").toggleClass("yellowlight");
+                }, ((index * 2) + 1) * 1000);
+
+                setTimeout(() => {
+                    $("#yellow").toggleClass("yellowlight");
+                }, (index * 2) * 1000);
+                console.log('flashing yellow')
+            }
+        });
+    }
 }
 
 
-$('#red').on('click', () => {
+$('#red').on('click', (e) => {
+    console.log(e.target.id)
     if (playerTurn) {
         console.log('clicked')
         playerArry.push(0)
