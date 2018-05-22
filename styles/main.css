@@ -1,4 +1,59 @@
+body {
+    display: grid;
+    grid-template-areas:
+    'header header header'
+    'buttons buttons buttons'
+    'colors colors colors'
+    'messages messages message'
+    'footer footer footer'
+}
+.header{
+    grid-area: header;
+}
+.buttons {
+    grid-area: buttons;
+}
+.gameboard {
+    grid-area: colors;
+    display: flex;
+}
+
+#red{
+    height: 200px;
+    width: 200px;
+    background-color:red ;
+}
+
+#blue{
+    height: 200px;
+    width: 200px;
+    background-color: blue;
+    
+}
+#green{
+    height: 200px;
+    width: 200px;
+    background-color: green;
+}
+
+#yellow{
+    height: 200px;
+    width: 200px;
+    background-color:yellow ;
+}
+
+
+
+
+
+
+.textarea{
+    grid-area: messages
+}
+.footer{
+    grid-area: footer;
+}
 div {
-    border: solid red;
-    background-color: blue
+    border: solid;
+   
 }
