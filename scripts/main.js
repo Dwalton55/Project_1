@@ -11,11 +11,16 @@ let game = {
     playerArry: [],
     cpuArray: [],
     score: 0, // increase by level times 100
+    RandomGen: () => {
+        cpuArray.push(Math.floor(Math.random() * 4))
+
+    },
     newgame : ()=>{
-        this.score = 0
-        this.level = 1
-        this.playerArry = []
-        this.cpuArray = []
+        
+        game.level = 1
+        game.playerArry = []
+        game.cpuArray = []
+        game.score = 0
         Turns.cpuTurn()
         //messages cleared and reset to welcome
     },
@@ -26,19 +31,6 @@ console.log("test")
 let cpuArray = game.cpuArray
 let level = game.level
 let playerArry = game.playerArry
-
-let startgame = {
-    welcome: () => {
-        //display welcom message on message html
-    },
-    RandomGen: () => {
-        cpuArray.push(Math.floor(Math.random() * 4))
-
-    },
-    // call cputurn somewhere in side. this function may be unneccessary.
-}
-
-
 
 turnTracker = {
     cpuTurn: true,
@@ -55,7 +47,7 @@ let Turns = {
             console.log("you win, try endless mode")
         }
         // run messages
-        startgame.RandomGen()
+        game.RandomGen()
         console.log(cpuArray) //update the display
         console.log('end turn')
         console.log('making changes in turns.computerturn ')
@@ -81,7 +73,8 @@ let Turns = {
             } 
         } else {
             console.log("try again")
-            //reset to level one
+            cpuArray = []
+            game.newgame
             // call a new game
         }
     }
@@ -141,6 +134,7 @@ $('#yellow').on('click', () => {
 
 $('.newgame').on('click',()=>{
     console.log('clicked')
+    cpuArray = []
     game.newgame()
 })
 //}
