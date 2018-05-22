@@ -7,7 +7,6 @@ console.log('Inside connected')
 let counter = 0
 
 let game = {
-   
     level: 0,
     playerArry: [],
     cpuArray: [],
@@ -52,7 +51,9 @@ let switcher = turnTracker.switcher
 
 let Turns = {
     cpuTurn: () => {
-        // check player level if over 10 player wins
+        if(game.level === endGame.winning){ // change to a win condition variable
+            console.log("you win, try endless mode")
+        }
         // run messages
         startgame.RandomGen()
         console.log(cpuArray) //update the display
@@ -70,8 +71,9 @@ let Turns = {
         if (playerArry[counter] === cpuArray[counter]) {
             counter++
             if(playerArry.length === cpuArray.length){
-                //increase level
                 
+                game.level++
+                console.log("level up!!! " + game.level)
                 console.log('making changes in turns.playerturn ')
                 cpuTurn = true
                 playerTurn = false
@@ -85,6 +87,10 @@ let Turns = {
     }
 }
 
+let endGame = {
+winning : 5,
+
+}
 
 let domHande = {
 
