@@ -6,8 +6,8 @@ this function will{
 	1.set score to 0
 	2.set level to 1
 	3.set player array to []
-	4.set computer array to []
-} 
+	4.set computer array to [] // must be emptied each round
+}, 
 
 Startgame:
 this funtion will{
@@ -21,13 +21,14 @@ turn tracker:
 this function will{
 	1.track the turns of the computer and player. 
 	2.if the computer turn ends it prompts the players to begin their turn.
-	3.if the players end their turn it prompts the computer to begin its turn
+	3.if the players end their turn it prompts the computer to begin its turn// check length of player array to equal cpu array
+	//in order to end player turn
 }
 
 computer turn: 
 this function will {
-	1.apply randomizer to a sequence array
-	2.save the randomized array to be checked against the player array
+	1.apply randomizer to a sequence array// added
+	2.save the randomized array to be checked against the player array//added
 	3.display the sequence array to the player(as a string to start)
 	
 
@@ -51,9 +52,9 @@ this function will{
 
 randomizer:
 this function will{
-	1.create a variable array computerSequence.
-	2.push A randomized number into the array as a number(possibly an object later)
-	3.countinue to increase array size based on player level
+	1.create a variable array computerSequence.// done
+	2.push A randomized number into the array as a number(possibly an object later)// done
+	3.countinue to increase array size based on player level//
 }
 
 end game:
