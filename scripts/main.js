@@ -11,6 +11,13 @@ let newgame = {
     level: 6,
     playerArry: [],
     cpuArray: [],
+    newgame : ()=>{
+        this.score = 0
+        this.level = 1
+        this.playerArry = []
+        this.cpuArray = []
+        Turns.cpuTurn()
+    },
     // activate start game here gameon: true,
 }
 
@@ -24,7 +31,7 @@ let startgame = {
         //display welcom message on message html
     },
     RandomGen: () => {
-        cpuArray.push(Math.floor(Math.random() * 3))
+        cpuArray.push(Math.floor(Math.random() * 4))
 
     },
     // call cputurn somewhere in side. this function may be unneccessary.
@@ -58,6 +65,8 @@ let Turns = {
         console.log(cpuArray) //update the display
         console.log('end turn')
         console.log('making changes in turns.computerturn ')
+        playerArry = []
+        counter = 0
         cpuTurn = false
         playerTurn =true
     },
@@ -69,7 +78,7 @@ let Turns = {
             counter++
             if(playerArry.length === cpuArray.length){
                 //increase level
-                // end player turn
+                
                 console.log('making changes in turns.playerturn ')
                 cpuTurn = true
                 playerTurn = false
