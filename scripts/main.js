@@ -24,9 +24,10 @@ let startgame = {
         //display welcom message on message html
     },
     RandomGen: () => {
-        cpuArray.push(Math.floor(Math.random() * 4))
+        cpuArray.push(Math.floor(Math.random() * 3))
 
     },
+    // call cputurn somewhere in side. this function may be unneccessary.
 }
 
 
@@ -56,8 +57,9 @@ let Turns = {
         startgame.RandomGen()
         console.log(cpuArray) //update the display
         console.log('end turn')
-        turnTracker.cpuTurn = false
-        turnTracker.playerTurn =true
+        console.log('making changes in turns.computerturn ')
+        cpuTurn = false
+        playerTurn =true
     },
 
     playerTurn: () => {
@@ -68,9 +70,10 @@ let Turns = {
             if(playerArry.length === cpuArray.length){
                 //increase level
                 // end player turn
-                turnTracker.cpuTurn = true
-                turnTracker.playerTurn = false
-                this.cpuTurn()
+                console.log('making changes in turns.playerturn ')
+                cpuTurn = true
+                playerTurn = false
+                Turns.cpuTurn()
             } 
         } else {
             console.log("try again")
@@ -89,7 +92,10 @@ let domHande = {
 $('#red').on('click', () => {
     if (playerTurn) {
         console.log('clicked')
-        playerArry.push(1)
+        playerArry.push(0)
+        console.log(playerArry)
+        Turns.playerTurn()
+
     } else {
         console.log(" not your turn!!!")
     }
@@ -97,7 +103,9 @@ $('#red').on('click', () => {
 $('#blue').on('click', () => {
     if (playerTurn) {
         console.log('clicked')
-        playerArry.push(2)
+        playerArry.push(1)
+        console.log(playerArry)
+        Turns.playerTurn()
     } else {
         console.log(" not your turn!!!")
     }
@@ -105,7 +113,9 @@ $('#blue').on('click', () => {
 $('#green').on('click', () => {
     if (playerTurn) {
         console.log('clicked')
-        playerArry.push(3)
+        playerArry.push(2)
+        console.log(playerArry)
+        Turns.playerTurn()
     } else {
         console.log(" not your turn!!!")
     }
@@ -113,7 +123,9 @@ $('#green').on('click', () => {
 $('#yellow').on('click', () => {
     if (playerTurn) {
         console.log('clicked')
-        playerArry.push(4)
+        playerArry.push(3)
+        console.log(playerArry)
+        Turns.playerTurn()
     } else {
         console.log(" not your turn!!!")
     }
