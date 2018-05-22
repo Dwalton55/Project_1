@@ -12,6 +12,7 @@ body {
 }
 .buttons {
     grid-area: buttons;
+    display: flex;
 }
 .gameboard {
     grid-area: colors;

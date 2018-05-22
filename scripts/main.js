@@ -6,25 +6,27 @@ console.log('Inside connected')
 
 let counter = 0
 
-let newgame = {
-    score: 0,
-    level: 6,
+let game = {
+   
+    level: 0,
     playerArry: [],
     cpuArray: [],
+    score: 0, // increase by level times 100
     newgame : ()=>{
         this.score = 0
         this.level = 1
         this.playerArry = []
         this.cpuArray = []
         Turns.cpuTurn()
+        //messages cleared and reset to welcome
     },
     // activate start game here gameon: true,
 }
 
 console.log("test")
-let cpuArray = newgame.cpuArray
-let level = newgame.level
-let playerArry = newgame.playerArry
+let cpuArray = game.cpuArray
+let level = game.level
+let playerArry = game.playerArry
 
 let startgame = {
     welcome: () => {
@@ -42,17 +44,6 @@ let startgame = {
 turnTracker = {
     cpuTurn: true,
     playerTurn: false,
-    //not finished in here yet
-    switcher: () => {
-        if (this.cpuTurn === true) {
-            this.playerTurn = false
-            Turns.cpuTurn
-        } else {
-            if (this.cpuTurn === false) {
-                playerTurn = true
-            }
-        }
-    }
 }
 
 let playerTurn = turnTracker.playerTurn
@@ -61,6 +52,8 @@ let switcher = turnTracker.switcher
 
 let Turns = {
     cpuTurn: () => {
+        // check player level if over 10 player wins
+        // run messages
         startgame.RandomGen()
         console.log(cpuArray) //update the display
         console.log('end turn')
@@ -138,6 +131,11 @@ $('#yellow').on('click', () => {
     } else {
         console.log(" not your turn!!!")
     }
+})
+
+$('.newgame').on('click',()=>{
+    console.log('clicked')
+    game.newgame()
 })
 //}
 
