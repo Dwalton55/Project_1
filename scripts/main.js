@@ -15,8 +15,8 @@ let game = {
         cpuArray.push(Math.floor(Math.random() * 4))
 
     },
-    newgame : ()=>{
-        
+    newgame: () => {
+
         game.level = 1
         game.playerArry = []
         game.cpuArray = []
@@ -29,10 +29,9 @@ let game = {
 
 console.log("test")
 let cpuArray = game.cpuArray
-let level = game.level
 let playerArry = game.playerArry
 
-turnTracker = {
+turnTracker = { // push into game?
     cpuTurn: true,
     playerTurn: false,
 }
@@ -43,10 +42,12 @@ let switcher = turnTracker.switcher
 
 let Turns = {
     cpuTurn: () => {
-        if(game.level === endGame.winning){ // change to a win condition variable
-            console.log("you win, try endless mode")
+        if (game.level === endGame.winning) { // change to a win condition variable
+            console.log("you win, try endless mode") // change to an alert or message
         }
-        // run messages
+
+        domHande.updateDisplay()
+        console.log('change the screen')
         game.RandomGen()
         console.log(cpuArray) //update the display
         console.log('end turn')
@@ -54,7 +55,7 @@ let Turns = {
         playerArry = []
         counter = 0
         cpuTurn = false
-        playerTurn =true
+        playerTurn = true
     },
 
     playerTurn: () => {
@@ -62,34 +63,37 @@ let Turns = {
         // click > check array > increase click counter > turn checker > countinue or end turn
         if (playerArry[counter] === cpuArray[counter]) {
             counter++
-            if(playerArry.length === cpuArray.length){
-                
+            if (playerArry.length === cpuArray.length) {
+
                 game.level++
                 console.log("level up!!! " + game.level)
                 console.log('making changes in turns.playerturn ')
                 cpuTurn = true
                 playerTurn = false
                 Turns.cpuTurn()
-            } 
+            }
         } else {
             console.log("try again")
             cpuArray = []
-            game.newgame
+            game.newgame()
             // call a new game
         }
     }
 }
 
 let endGame = {
-winning : 5,
+    winning: 5,
 
 }
 
 let domHande = {
-
+    updateDisplay: () => {
+        $('.level').html(game.level)
+        $('.score').html(game.score)
+    },
 }
 
-//let red = ()=>{
+
 $('#red').on('click', () => {
     if (playerTurn) {
         console.log('clicked')
@@ -132,12 +136,8 @@ $('#yellow').on('click', () => {
     }
 })
 
-$('.newgame').on('click',()=>{
+$('.newgame').on('click', () => {
     console.log('clicked')
     cpuArray = []
     game.newgame()
 })
-//}
-
-
- // end of ready doc
