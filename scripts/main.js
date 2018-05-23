@@ -16,11 +16,13 @@ let game = {
 
     },
     newgame: () => {
-
+        
         game.level = 1
         game.playerArry = []
         game.cpuArray = []
         game.score = 0
+        difficulty = 1
+        game.musicmode.musicPlay = false
         domHande.welcomeMessage()
         console.log("message passes")
         turnTracker.cpu = true,
@@ -32,17 +34,19 @@ let game = {
         playerMusicarray: [],
         musicPlay: false,
         musicMode: ()=>{
+            console.log("calling musicmode")
+            console.log("music mode on")
             musicPlay = true
             turnTracker.cpuTurn = false
             playerTurn = false
         },
         playsong: ()=>{
-            if(newgame.musicmode.musicPlay){
-            domHande.flash(newgame.musicmode.playerMusicarray)
+            if(game.musicmode.musicPlay){
+            domHande.flash(game.musicmode.playerMusicarray,.2)
             }
         },
         clear: ()=>{
-            newgame.musicmode.playerMusicarray =[]
+            game.musicmode.playerMusicarray =[]
         },
     } // end object
 
@@ -76,7 +80,7 @@ let Turns = {
                     domHande.simeon()
                     game.RandomGen()
                     console.log(cpuArray) //update the display
-                    domHande.flash(cpuArray)
+                    domHande.flash(cpuArray,game.difficulty)
                     console.log('end turn')
                     console.log('making changes in turns.computerturn ')
                     playerArry = []
@@ -129,60 +133,61 @@ let domHande = {
         $('.score').html(game.score)
         $('.highscore').html(endGame.highscore)
     },
-    flash: (colors) => {
+    flash: (colors,speed) => {
+
         colors.forEach((number, index) => {
             console.log(index + "time through")
             if (number === 0) {
                 setTimeout(() => {
                     $(".red").toggleClass("redlight");
                     audio.red()
-                }, ((index * 2) + 1) * 500);
+                }, ((index * 2) + 1) * (500*speed));
                 setTimeout(() => {
                     $(".red").toggleClass("redlight");
-                }, (index * 2) * 500);
+                }, (index * 2) * (500*speed));
                 console.log('flashing red')
 
             } else if (number === 1) {
                 setTimeout(() => {
                     $(".blue").toggleClass("bluelight");
                     audio.blue()
-                }, ((index * 2) + 1) * 500);
+                }, ((index * 2) + 1) * (500*speed));
 
                 setTimeout(() => {
                     $(".blue").toggleClass("bluelight");
-                }, (index * 2) * 500);
+                }, (index * 2) * (500*speed));
                 console.log('flashing blue')
 
             } else if (number === 2) {
                 setTimeout(() => {
                     $(".green").toggleClass("greenlight");
                     audio.green()
-                }, ((index * 2) + 1) * 500);
+                }, ((index * 2) + 1) * (500*speed));
 
                 setTimeout(() => {
                     $(".green").toggleClass("greenlight");
-                }, (index * 2) * 500);
+                }, (index * 2) * (500*speed));
                 console.log('flashing green')
 
             } else if (number === 3) {
                 setTimeout(() => {
                     $(".yellow").toggleClass("yellowlight");
                     audio.yellow()
-                }, ((index * 2) + 1) * 500);
+                }, ((index * 2) + 1) * (500*speed));
 
                 setTimeout(() => {
                     $(".yellow").toggleClass("yellowlight");
-                }, (index * 2) * 500);
+                }, (index * 2) * (500*speed));
                 console.log('flashing yellow')
             } else if (number === 4) {
                 setTimeout(() => {
                     $(".orange").toggleClass("orangelight");
                     audio.orange()
-                }, ((index * 2) + 1) * 500);
+                }, ((index * 2) + 1) * (500*speed));
 
                 setTimeout(() => {
                     $(".orange").toggleClass("orangelight");
-                }, (index * 2) * 500);
+                }, (index * 2) * (500*speed));
                 console.log('flashing orange')
             }
         });
@@ -232,6 +237,9 @@ $('.red').on('click', (e) => {
         console.log(playerArry)
         Turns.playerTurn()
 
+    } else if(game.musicmode.musicPlay){
+        console.log("music mode red")
+        game.musicmode.playerMusicarray.push(0)
     } else {
         console.log(" not your turn!!!")
     }
@@ -243,7 +251,9 @@ $('.blue').on('click', () => {
         playerArry.push(1)
         console.log(playerArry)
         Turns.playerTurn()
-    } else {
+    }else if(game.musicmode.musicPlay){
+        game.musicmode.playerMusicarray.push(1)
+    }else {
         console.log(" not your turn!!!")
     }
 })
@@ -254,7 +264,9 @@ $('.green').on('click', () => {
         playerArry.push(2)
         console.log(playerArry)
         Turns.playerTurn()
-    } else {
+    }else if(game.musicmode.musicPlay){
+        game.musicmode.playerMusicarray.push(2)
+    }else {
         console.log(" not your turn!!!")
     }
 })
@@ -265,7 +277,9 @@ $('.yellow').on('click', () => {
         playerArry.push(3)
         console.log(playerArry)
         Turns.playerTurn()
-    } else {
+    }else if(game.musicmode.musicPlay){
+        game.musicmode.playerMusicarray.push(3)
+    }else {
         console.log(" not your turn!!!")
     }
 })
@@ -276,6 +290,8 @@ $('.orange').on('click', () => {
         playerArry.push(4)
         console.log(playerArry)
         Turns.playerTurn()
+    }else if(game.musicmode.musicPlay){
+        game.musicmode.playerMusicarray.push(4)
     } else {
         console.log(" not your turn!!!")
     }
@@ -286,7 +302,22 @@ $('.newgame').on('click', () => {
     cpuArray = []
     game.newgame()
 })
+$('.hardmode').on('click',()=>{
+    // toggle css to show the button as compressed. add to other buttons
+    game.difficulty *=1.75
+})
 
-$('.musicmode').on('click', newgame.musicmode.musicMode())
-$('.play').on('click', newgame.musicmode.playsong())
-$('.clear').on('click', newgame.musicmode.clear())
+$('.musicmode').on('click',()=>{
+    game.musicmode.musicMode()
+    console.log("music init")
+    game.musicmode.musicPlay = true
+    console.log(game.musicmode.musicPlay)
+    
+})
+$('.play').on('click', ()=>{
+    console.log('click recived')
+    game.musicmode.playsong()
+})
+$('.clear').on('click',()=>{
+    game.musicmode.clear()
+})
