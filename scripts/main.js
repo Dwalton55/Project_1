@@ -10,7 +10,8 @@ let game = {
     level: 0,
     playerArry: [],
     cpuArray: [],
-    score: 0, // increase by level times 100
+    score: 0,
+    difficulty: 1, // increase by level times 100
     RandomGen: () => {
         cpuArray.push(Math.floor(Math.random() * 5))
 
@@ -21,11 +22,11 @@ let game = {
         game.playerArry = []
         game.cpuArray = []
         game.score = 0
-        difficulty = 1
         game.musicmode.musicPlay = false
+        console.log(game.musicmode.musicPlay)
         domHande.welcomeMessage()
         console.log("message passes")
-        turnTracker.cpu = true,
+        console.log(turnTracker.cpu)
         Turns.cpuTurn()
 
         //messages cleared and reset to welcome
@@ -42,7 +43,7 @@ let game = {
         },
         playsong: ()=>{
             if(game.musicmode.musicPlay){
-            domHande.flash(game.musicmode.playerMusicarray,.2)
+            domHande.flash(game.musicmode.playerMusicarray)
             }
         },
         clear: ()=>{
@@ -68,6 +69,8 @@ let playerTurn = turnTracker.playerTurn
 
 let Turns = {
     cpuTurn: () => { // function start
+        turnTracker.cpuTurn = true
+        console.log("CPU Turn?", turnTracker.cpuTurn)
         if (turnTracker.cpuTurn) {
             setTimeout(() => {
                 if (game.level === endGame.winning) { // change to a win condition variable
@@ -75,12 +78,12 @@ let Turns = {
                     console.log("you win, try endless mode") // change to an alert or message
                     domHande.win()
                 } else {
-
+                    console.log("Updating the display")
                     domHande.updateDisplay()
                     domHande.simeon()
                     game.RandomGen()
                     console.log(cpuArray) //update the display
-                    domHande.flash(cpuArray,game.difficulty)
+                    domHande.flash(cpuArray)
                     console.log('end turn')
                     console.log('making changes in turns.computerturn ')
                     playerArry = []
@@ -89,7 +92,7 @@ let Turns = {
                     playerTurn = true
                 }
             }, 3000)
-        }
+        }//if begin
     }, // function end
 
     playerTurn: () => {
@@ -109,7 +112,8 @@ let Turns = {
         } else {
             console.log("try again")
             cpuArray = []
-            game.newgame()
+            turnTracker.playerTurn = false
+            // game.newgame()
             // call a new game
         }
     }
@@ -133,61 +137,61 @@ let domHande = {
         $('.score').html(game.score)
         $('.highscore').html(endGame.highscore)
     },
-    flash: (colors,speed) => {
-
+    flash: (colors) => {
+        
         colors.forEach((number, index) => {
             console.log(index + "time through")
             if (number === 0) {
                 setTimeout(() => {
                     $(".red").toggleClass("redlight");
                     audio.red()
-                }, ((index * 2) + 1) * (500*speed));
+                }, ((index * 2) + 1) * (250* game.difficulty));
                 setTimeout(() => {
                     $(".red").toggleClass("redlight");
-                }, (index * 2) * (500*speed));
+                }, (index * 2) * (250* game.difficulty));
                 console.log('flashing red')
 
             } else if (number === 1) {
                 setTimeout(() => {
                     $(".blue").toggleClass("bluelight");
                     audio.blue()
-                }, ((index * 2) + 1) * (500*speed));
+                }, ((index * 2) + 1) * (250* game.difficulty));
 
                 setTimeout(() => {
                     $(".blue").toggleClass("bluelight");
-                }, (index * 2) * (500*speed));
+                }, (index * 2) * (250* game.difficulty));
                 console.log('flashing blue')
 
             } else if (number === 2) {
                 setTimeout(() => {
                     $(".green").toggleClass("greenlight");
                     audio.green()
-                }, ((index * 2) + 1) * (500*speed));
+                }, ((index * 2) + 1) * (250* game.difficulty));
 
                 setTimeout(() => {
                     $(".green").toggleClass("greenlight");
-                }, (index * 2) * (500*speed));
+                }, (index * 2) * (250* game.difficulty));
                 console.log('flashing green')
 
             } else if (number === 3) {
                 setTimeout(() => {
                     $(".yellow").toggleClass("yellowlight");
                     audio.yellow()
-                }, ((index * 2) + 1) * (500*speed));
+                }, ((index * 2) + 1) * (250* game.difficulty));
 
                 setTimeout(() => {
                     $(".yellow").toggleClass("yellowlight");
-                }, (index * 2) * (500*speed));
+                }, (index * 2) * (250* game.difficulty));
                 console.log('flashing yellow')
             } else if (number === 4) {
                 setTimeout(() => {
                     $(".orange").toggleClass("orangelight");
                     audio.orange()
-                }, ((index * 2) + 1) * (500*speed));
+                }, ((index * 2) + 1) * (250* game.difficulty));
 
                 setTimeout(() => {
                     $(".orange").toggleClass("orangelight");
-                }, (index * 2) * (500*speed));
+                }, (index * 2) * (250* game.difficulty));
                 console.log('flashing orange')
             }
         });
@@ -301,10 +305,6 @@ $('.newgame').on('click', () => {
     console.log('clicked')
     cpuArray = []
     game.newgame()
-})
-$('.hardmode').on('click',()=>{
-    // toggle css to show the button as compressed. add to other buttons
-    game.difficulty *=1.75
 })
 
 $('.musicmode').on('click',()=>{
