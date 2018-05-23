@@ -26,6 +26,9 @@ body {
     background-color:rgba(255, 0,0,.5) ;
 
 }
+.red:hover {
+    background-color: rgba(255, 0,0,1);
+}
 .redlight{ 
     background-color: rgba(255, 0,0,1);
 }
@@ -36,6 +39,9 @@ body {
     background-color:rgba(0, 0,255,.5);
     
 }
+.blue:hover {
+    background-color: rgba(0, 0,255, 1);
+}
 .bluelight{ 
     background-color: rgba(0, 0,255, 1);
 }
@@ -43,6 +49,9 @@ body {
     height: 200px;
     width: 200px;
     background-color: rgba(0, 255,0,.5);
+}
+.green:hover{
+    background-color: rgba(0, 255, 0,1);
 }
 .greenlight{ 
     background-color: rgba(0, 255, 0,1);
@@ -53,9 +62,23 @@ body {
     width: 200px;
     background-color: rgba(238, 255, .1, .5);
 }
-
+.yellow:hover {
+    background-color: rgba(238, 255, 0,1);
+}
 .yellowlight{ 
     background-color: rgba(238, 255, 0,1);
+}
+
+.orange{
+    height: 200px;
+    width: 200px;
+    background-color: rgba(255, 157, 0, .5);
+}
+.orange:hover {
+    background-color: rgba(255, 157, 0, 1);
+}
+.orangelight{ 
+    background-color: rgba(255, 157, 0,1);
 }
 
 

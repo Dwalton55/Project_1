@@ -12,7 +12,7 @@ let game = {
     cpuArray: [],
     score: 0, // increase by level times 100
     RandomGen: () => {
-        cpuArray.push(Math.floor(Math.random() * 4))
+        cpuArray.push(Math.floor(Math.random() * 5))
 
     },
     newgame: () => {
@@ -21,10 +21,14 @@ let game = {
         game.playerArry = []
         game.cpuArray = []
         game.score = 0
+        domHande.welcomeMessage()
+        console.log("message passes")
         Turns.cpuTurn()
+        
         //messages cleared and reset to welcome
     },
-    // activate start game here gameon: true,
+    
+    
 }
 
 console.log("test")
@@ -37,7 +41,7 @@ turnTracker = { // push into game?
 }
 
 let playerTurn = turnTracker.playerTurn
-let switcher = turnTracker.switcher
+
 
 
 let Turns = {
@@ -45,10 +49,11 @@ let Turns = {
        setTimeout(()=>{
         if (game.level === endGame.winning) { // change to a win condition variable
             console.log("you win, try endless mode") // change to an alert or message
-        }
+            domHande.win()
+        } else{
 
         domHande.updateDisplay()
-        console.log('change the screen')
+        domHande.simeon()
         game.RandomGen()
         console.log(cpuArray) //update the display
         domHande.flash(cpuArray)
@@ -58,6 +63,7 @@ let Turns = {
         counter = 0
         cpuTurn = false
         playerTurn = true
+        }
     },3000)
     }, // function end
 
@@ -69,7 +75,7 @@ let Turns = {
             if (playerArry.length === cpuArray.length) {
 
                 game.level++
-                console.log("level up!!! " + game.level)
+                domHande.inround()
                 console.log('making changes in turns.playerturn ')
                 cpuTurn = true
                 playerTurn = false
@@ -85,8 +91,7 @@ let Turns = {
 }
 
 let endGame = {
-    winning: 5,
-
+    winning: 10,
 }
 
 let domHande = {
@@ -136,14 +141,57 @@ let domHande = {
                     $(".yellow").toggleClass("yellowlight");
                 }, (index * 2) * 1000);
                 console.log('flashing yellow')
+            } else if (number === 4) {
+                setTimeout(() => {
+                    $(".orange").toggleClass("orangelight");
+                }, ((index * 2) + 1) * 1000);
+
+                setTimeout(() => {
+                    $(".orange").toggleClass("orangelight");
+                }, (index * 2) * 1000);
+                console.log('flashing orange')
             }
         });
+    },
+    welcomeMessage: ()=>{
+        $('.textarea').html('welcome to the game!')
+    },
+    lose: ()=>{
+        $('.textarea').html('Nice try Try again')
+    },
+    inround: ()=>{
+        $('.textarea').html("You Leveled Up! try to keep up")
+    },
+    simeon: ()=>{
+        $('.textarea').html("Now its my turn!!")
+    },
+    win: ()=>{
+        $('.textarea').html("You won!! you are the best!!")
     }
+
+}
+
+let audio ={
+    red: ()=>{
+        document.getElementById('red').play()
+    },
+    blue: ()=>{
+        document.getElementById('blue').play()
+    },
+    green: ()=>{
+        document.getElementById('green').play()
+    },
+    yellow: ()=>{
+        document.getElementById('yellow').play()
+    },
+    orange: ()=>{
+        document.getElementById('orange').play()
+    },
 }
 
 
 $('.red').on('click', (e) => {
-    console.log(e.target.id)
+    audio.red()
     if (playerTurn) {
         console.log('clicked')
         playerArry.push(0)
@@ -155,6 +203,7 @@ $('.red').on('click', (e) => {
     }
 })
 $('.blue').on('click', () => {
+    audio.blue()
     if (playerTurn) {
         console.log('clicked')
         playerArry.push(1)
@@ -165,6 +214,7 @@ $('.blue').on('click', () => {
     }
 })
 $('.green').on('click', () => {
+    audio.green()
     if (playerTurn) {
         console.log('clicked')
         playerArry.push(2)
@@ -175,6 +225,18 @@ $('.green').on('click', () => {
     }
 })
 $('.yellow').on('click', () => {
+    audio.yellow()
+    if (playerTurn) {
+        console.log('clicked')
+        playerArry.push(3)
+        console.log(playerArry)
+        Turns.playerTurn()
+    } else {
+        console.log(" not your turn!!!")
+    }
+})
+$('.orange').on('click', () => {
+    audio.orange()
     if (playerTurn) {
         console.log('clicked')
         playerArry.push(3)
