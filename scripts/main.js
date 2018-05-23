@@ -46,12 +46,14 @@ let playerTurn = turnTracker.playerTurn
 
 let Turns = {
     cpuTurn: () => { // function start
+        
        setTimeout(()=>{
         if (game.level === endGame.winning) { // change to a win condition variable
+            
             console.log("you win, try endless mode") // change to an alert or message
             domHande.win()
         } else{
-
+        
         domHande.updateDisplay()
         domHande.simeon()
         game.RandomGen()
@@ -73,7 +75,7 @@ let Turns = {
         if (playerArry[counter] === cpuArray[counter]) {
             counter++
             if (playerArry.length === cpuArray.length) {
-
+                endGame.hscalc()
                 game.level++
                 domHande.inround()
                 console.log('making changes in turns.playerturn ')
@@ -91,13 +93,22 @@ let Turns = {
 }
 
 let endGame = {
-    winning: 10,
+    winning: 8,
+    highscore: 3,
+    hscalc: ()=>{
+        console.log('testing')
+        if (game.level > endGame.highscore){
+            console.log("NEW HIGH SCORE!!!!!!!!!!!!!!!!!!!!!!!!!")
+            endGame.highscore = game.level
+        }
+    },
 }
 
 let domHande = {
     updateDisplay: () => {
         $('.level').html(game.level)
         $('.score').html(game.score)
+        $('.highscore').html(endGame.highscore)
     },
     flash: (colors) => {
         colors.forEach((number, index) => {
@@ -106,53 +117,53 @@ let domHande = {
                 setTimeout(() => {
                     $(".red").toggleClass("redlight");
                     audio.red()
-                }, ((index * 2) + 1) * 1000);
+                }, ((index * 2) + 1) * 500);
                 setTimeout(() => {
                     $(".red").toggleClass("redlight");
-                }, (index * 2) * 1000);
+                }, (index * 2) * 500);
                 console.log('flashing red')
 
             } else if (number === 1) {
                 setTimeout(() => {
                     $(".blue").toggleClass("bluelight");
                     audio.blue()
-                }, ((index * 2) + 1) * 1000);
+                }, ((index * 2) + 1) * 500);
 
                 setTimeout(() => {
                     $(".blue").toggleClass("bluelight");
-                }, (index * 2) * 1000);
+                }, (index * 2) * 500);
                 console.log('flashing blue')
 
             } else if (number === 2) {
                 setTimeout(() => {
                     $(".green").toggleClass("greenlight");
                     audio.green()
-                }, ((index * 2) + 1) * 1000);
+                }, ((index * 2) + 1) * 500);
 
                 setTimeout(() => {
                     $(".green").toggleClass("greenlight");
-                }, (index * 2) * 1000);
+                }, (index * 2) * 500);
                 console.log('flashing green')
 
             } else if (number === 3) {
                 setTimeout(() => {
                     $(".yellow").toggleClass("yellowlight");
                     audio.yellow()
-                }, ((index * 2) + 1) * 1000);
+                }, ((index * 2) + 1) * 500);
 
                 setTimeout(() => {
                     $(".yellow").toggleClass("yellowlight");
-                }, (index * 2) * 1000);
+                }, (index * 2) * 500);
                 console.log('flashing yellow')
             } else if (number === 4) {
                 setTimeout(() => {
                     $(".orange").toggleClass("orangelight");
                     audio.orange()
-                }, ((index * 2) + 1) * 1000);
+                }, ((index * 2) + 1) * 500);
 
                 setTimeout(() => {
                     $(".orange").toggleClass("orangelight");
-                }, (index * 2) * 1000);
+                }, (index * 2) * 500);
                 console.log('flashing orange')
             }
         });
@@ -243,7 +254,7 @@ $('.orange').on('click', () => {
     audio.orange()
     if (playerTurn) {
         console.log('clicked')
-        playerArry.push(3)
+        playerArry.push(4)
         console.log(playerArry)
         Turns.playerTurn()
     } else {
