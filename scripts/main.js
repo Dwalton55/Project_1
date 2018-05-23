@@ -41,7 +41,8 @@ let switcher = turnTracker.switcher
 
 
 let Turns = {
-    cpuTurn: () => {
+    cpuTurn: () => { // function start
+       setTimeout(()=>{
         if (game.level === endGame.winning) { // change to a win condition variable
             console.log("you win, try endless mode") // change to an alert or message
         }
@@ -50,17 +51,15 @@ let Turns = {
         console.log('change the screen')
         game.RandomGen()
         console.log(cpuArray) //update the display
-        setTimeout(()=>{
-            domHande.flash(cpuArray)
-        })
-        
+        domHande.flash(cpuArray)
         console.log('end turn')
         console.log('making changes in turns.computerturn ')
         playerArry = []
         counter = 0
         cpuTurn = false
         playerTurn = true
-    },
+    },3000)
+    }, // function end
 
     playerTurn: () => {
         // input large function. will check player array against cpu array after every click
