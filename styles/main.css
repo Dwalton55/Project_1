@@ -16,6 +16,9 @@ body {
     justify-content: space-around;
     font-size: 40px;
 }
+.musicholder{
+    display: block;
+}
 .gameboard {
    
     display: flex;

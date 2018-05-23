@@ -29,12 +29,21 @@ let game = {
         //messages cleared and reset to welcome
     },
     musicmode: { // begin object
-        musicarray: [],
+        playerMusicarray: [],
+        musicPlay: false,
         musicMode: ()=>{
+            musicPlay = true
             turnTracker.cpuTurn = false
             playerTurn = false
-
-        }
+        },
+        playsong: ()=>{
+            if(newgame.musicmode.musicPlay){
+            domHande.flash(newgame.musicmode.playerMusicarray)
+            }
+        },
+        clear: ()=>{
+            newgame.musicmode.playerMusicarray =[]
+        },
     } // end object
 
 
@@ -277,3 +286,7 @@ $('.newgame').on('click', () => {
     cpuArray = []
     game.newgame()
 })
+
+$('.musicmode').on('click', newgame.musicmode.musicMode())
+$('.play').on('click', newgame.musicmode.playsong())
+$('.clear').on('click', newgame.musicmode.clear())
