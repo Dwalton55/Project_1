@@ -17,44 +17,45 @@ body {
 .gameboard {
     grid-area: colors;
     display: flex;
+    background: black;
 }
 
-#red{
+.red{
     height: 200px;
     width: 200px;
-    background-color:rgba(255, 0,0, .1) ;
+    background-color:rgba(255, 0,0,.5) ;
 
 }
 .redlight{ 
-    background-color: rgba(255, 0,0, 1);
+    background-color: rgba(255, 0,0,1);
 }
 
-#blue{
+.blue{
     height: 200px;
     width: 200px;
-    background-color:rgba(0, 0,255, .1);
+    background-color:rgba(0, 0,255,.5);
     
 }
 .bluelight{ 
     background-color: rgba(0, 0,255, 1);
 }
-#green{
+.green{
     height: 200px;
     width: 200px;
-    background-color rgb(0, 255,0, .1);
+    background-color: rgba(0, 255,0,.5);
 }
 .greenlight{ 
-    background-color: rgba(0, 255,0, 1);
+    background-color: rgba(0, 255, 0,1);
 }
 
-#yellow{
+.yellow{
     height: 200px;
     width: 200px;
-    background-color rgb(238, 255, .1);
+    background-color: rgba(238, 255, .1, .5);
 }
 
 .yellowlight{ 
-    background-color: rgb(238, 255, 1);
+    background-color: rgba(238, 255, 0,1);
 }
 
 

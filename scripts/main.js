@@ -50,6 +50,10 @@ let Turns = {
         console.log('change the screen')
         game.RandomGen()
         console.log(cpuArray) //update the display
+        setTimeout(()=>{
+            domHande.flash(cpuArray)
+        })
+        
         console.log('end turn')
         console.log('making changes in turns.computerturn ')
         playerArry = []
@@ -96,41 +100,41 @@ let domHande = {
             console.log(index + "time through")
             if (number === 0) {
                 setTimeout(() => {
-                    $("#red").toggleClass("redlight");
+                    $(".red").toggleClass("redlight");
                 }, ((index * 2) + 1) * 1000);
 
                 setTimeout(() => {
-                    $("#red").toggleClass("redlight");
+                    $(".red").toggleClass("redlight");
                 }, (index * 2) * 1000);
                 console.log('flashing red')
 
             } else if (number === 1) {
                 setTimeout(() => {
-                    $("#blue").toggleClass("bluelight");
+                    $(".blue").toggleClass("bluelight");
                 }, ((index * 2) + 1) * 1000);
 
                 setTimeout(() => {
-                    $("#blue").toggleClass("bluelight");
+                    $(".blue").toggleClass("bluelight");
                 }, (index * 2) * 1000);
                 console.log('flashing blue')
 
             } else if (number === 2) {
                 setTimeout(() => {
-                    $("#green").toggleClass("greenlight");
+                    $(".green").toggleClass("greenlight");
                 }, ((index * 2) + 1) * 1000);
 
                 setTimeout(() => {
-                    $("#green").toggleClass("greenlight");
+                    $(".green").toggleClass("greenlight");
                 }, (index * 2) * 1000);
                 console.log('flashing green')
 
             } else if (number === 3) {
                 setTimeout(() => {
-                    $("#yellow").toggleClass("yellowlight");
+                    $(".yellow").toggleClass("yellowlight");
                 }, ((index * 2) + 1) * 1000);
 
                 setTimeout(() => {
-                    $("#yellow").toggleClass("yellowlight");
+                    $(".yellow").toggleClass("yellowlight");
                 }, (index * 2) * 1000);
                 console.log('flashing yellow')
             }
@@ -139,7 +143,7 @@ let domHande = {
 }
 
 
-$('#red').on('click', (e) => {
+$('.red').on('click', (e) => {
     console.log(e.target.id)
     if (playerTurn) {
         console.log('clicked')
@@ -151,7 +155,7 @@ $('#red').on('click', (e) => {
         console.log(" not your turn!!!")
     }
 })
-$('#blue').on('click', () => {
+$('.blue').on('click', () => {
     if (playerTurn) {
         console.log('clicked')
         playerArry.push(1)
@@ -161,7 +165,7 @@ $('#blue').on('click', () => {
         console.log(" not your turn!!!")
     }
 })
-$('#green').on('click', () => {
+$('.green').on('click', () => {
     if (playerTurn) {
         console.log('clicked')
         playerArry.push(2)
@@ -171,7 +175,7 @@ $('#green').on('click', () => {
         console.log(" not your turn!!!")
     }
 })
-$('#yellow').on('click', () => {
+$('.yellow').on('click', () => {
     if (playerTurn) {
         console.log('clicked')
         playerArry.push(3)
