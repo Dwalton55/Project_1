@@ -23,12 +23,21 @@ let game = {
         game.score = 0
         domHande.welcomeMessage()
         console.log("message passes")
+        turnTracker.cpu = true,
         Turns.cpuTurn()
-        
+
         //messages cleared and reset to welcome
     },
-    
-    
+    musicmode: { // begin object
+        musicarray: [],
+        musicMode: ()=>{
+            turnTracker.cpuTurn = false
+            playerTurn = false
+
+        }
+    } // end object
+
+
 }
 
 console.log("test")
@@ -46,27 +55,28 @@ let playerTurn = turnTracker.playerTurn
 
 let Turns = {
     cpuTurn: () => { // function start
-        
-       setTimeout(()=>{
-        if (game.level === endGame.winning) { // change to a win condition variable
-            
-            console.log("you win, try endless mode") // change to an alert or message
-            domHande.win()
-        } else{
-        
-        domHande.updateDisplay()
-        domHande.simeon()
-        game.RandomGen()
-        console.log(cpuArray) //update the display
-        domHande.flash(cpuArray)
-        console.log('end turn')
-        console.log('making changes in turns.computerturn ')
-        playerArry = []
-        counter = 0
-        cpuTurn = false
-        playerTurn = true
+        if (turnTracker.cpuTurn) {
+            setTimeout(() => {
+                if (game.level === endGame.winning) { // change to a win condition variable
+
+                    console.log("you win, try endless mode") // change to an alert or message
+                    domHande.win()
+                } else {
+
+                    domHande.updateDisplay()
+                    domHande.simeon()
+                    game.RandomGen()
+                    console.log(cpuArray) //update the display
+                    domHande.flash(cpuArray)
+                    console.log('end turn')
+                    console.log('making changes in turns.computerturn ')
+                    playerArry = []
+                    counter = 0
+                    cpuTurn = false
+                    playerTurn = true
+                }
+            }, 3000)
         }
-    },3000)
     }, // function end
 
     playerTurn: () => {
@@ -95,9 +105,9 @@ let Turns = {
 let endGame = {
     winning: 8,
     highscore: 3,
-    hscalc: ()=>{
+    hscalc: () => {
         console.log('testing')
-        if (game.level > endGame.highscore){
+        if (game.level > endGame.highscore) {
             console.log("NEW HIGH SCORE!!!!!!!!!!!!!!!!!!!!!!!!!")
             endGame.highscore = game.level
         }
@@ -168,38 +178,38 @@ let domHande = {
             }
         });
     },
-    welcomeMessage: ()=>{
+    welcomeMessage: () => {
         $('.textarea').html('welcome to the game!')
     },
-    lose: ()=>{
+    lose: () => {
         $('.textarea').html('Nice try Try again')
     },
-    inround: ()=>{
+    inround: () => {
         $('.textarea').html("You Leveled Up! try to keep up")
     },
-    simeon: ()=>{
+    simeon: () => {
         $('.textarea').html("Now its my turn!!")
     },
-    win: ()=>{
+    win: () => {
         $('.textarea').html("You won!! you are the best!!")
     }
 
 }
 
-let audio ={
-    red: ()=>{
+let audio = {
+    red: () => {
         document.getElementById('red').play()
     },
-    blue: ()=>{
+    blue: () => {
         document.getElementById('blue').play()
     },
-    green: ()=>{
+    green: () => {
         document.getElementById('green').play()
     },
-    yellow: ()=>{
+    yellow: () => {
         document.getElementById('yellow').play()
     },
-    orange: ()=>{
+    orange: () => {
         document.getElementById('orange').play()
     },
 }
