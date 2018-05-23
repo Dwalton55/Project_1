@@ -105,8 +105,8 @@ let domHande = {
             if (number === 0) {
                 setTimeout(() => {
                     $(".red").toggleClass("redlight");
+                    audio.red()
                 }, ((index * 2) + 1) * 1000);
-
                 setTimeout(() => {
                     $(".red").toggleClass("redlight");
                 }, (index * 2) * 1000);
@@ -115,6 +115,7 @@ let domHande = {
             } else if (number === 1) {
                 setTimeout(() => {
                     $(".blue").toggleClass("bluelight");
+                    audio.blue()
                 }, ((index * 2) + 1) * 1000);
 
                 setTimeout(() => {
@@ -125,6 +126,7 @@ let domHande = {
             } else if (number === 2) {
                 setTimeout(() => {
                     $(".green").toggleClass("greenlight");
+                    audio.green()
                 }, ((index * 2) + 1) * 1000);
 
                 setTimeout(() => {
@@ -135,6 +137,7 @@ let domHande = {
             } else if (number === 3) {
                 setTimeout(() => {
                     $(".yellow").toggleClass("yellowlight");
+                    audio.yellow()
                 }, ((index * 2) + 1) * 1000);
 
                 setTimeout(() => {
@@ -144,6 +147,7 @@ let domHande = {
             } else if (number === 4) {
                 setTimeout(() => {
                     $(".orange").toggleClass("orangelight");
+                    audio.orange()
                 }, ((index * 2) + 1) * 1000);
 
                 setTimeout(() => {
