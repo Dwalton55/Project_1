@@ -70,6 +70,7 @@ let Turns = {
                     console.log("you win, try endless mode") // change to an alert or message
                     domHande.win()
                 } else {
+                    game.score = game.level *100
                     console.log("Updating the display")
                     domHande.updateDisplay()
                     $('.rotateMessage').html('Try to keep up!')
