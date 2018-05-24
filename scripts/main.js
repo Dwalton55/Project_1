@@ -11,6 +11,7 @@ let game = {
     playerArry: [],
     cpuArray: [],
     score: 0,
+    hardmode: false,
     difficulty: 1, // increase by level times 100
     RandomGen: () => {
         cpuArray.push(Math.floor(Math.random() * 5))
@@ -24,6 +25,7 @@ let game = {
         game.score = 0
         game.musicmode.musicPlay = false
         console.log(game.musicmode.musicPlay)
+        $('.rotateMessage').html('Lets do this!')
         domHande.welcomeMessage()
         console.log("message passes")
         console.log(turnTracker.cpu)
@@ -37,6 +39,8 @@ let game = {
         musicMode: ()=>{
             console.log("calling musicmode")
             console.log("music mode on")
+            $('.rotateMessage').html('I guess relaxing is good too. <br> Let me know when you are ready to play')
+            $('.textarea').html('Lets relax and hear you play')
             musicPlay = true
             turnTracker.cpuTurn = false
             playerTurn = false
@@ -80,6 +84,7 @@ let Turns = {
                 } else {
                     console.log("Updating the display")
                     domHande.updateDisplay()
+                    $('.rotateMessage').html('Try to keep up!')
                     domHande.simeon()
                     game.RandomGen()
                     console.log(cpuArray) //update the display
@@ -107,10 +112,13 @@ let Turns = {
                 console.log('making changes in turns.playerturn ')
                 cpuTurn = true
                 playerTurn = false
+                $('.rotateMessage').html('Good job!')
                 Turns.cpuTurn()
             }
         } else {
-            console.log("try again")
+            
+            $('.textarea').html('Wrong Button. <br> Click new game to try again')
+            $('.rotateMessage').html('Womp womp womp')
             cpuArray = []
             turnTracker.playerTurn = false
             // game.newgame()
@@ -125,7 +133,7 @@ let endGame = {
     hscalc: () => {
         console.log('testing')
         if (game.level > endGame.highscore) {
-            console.log("NEW HIGH SCORE!!!!!!!!!!!!!!!!!!!!!!!!!")
+            $('.textarea').html("New HighScore!!!!")
             endGame.highscore = game.level
         }
     },
@@ -210,6 +218,7 @@ let domHande = {
     },
     win: () => {
         $('.textarea').html("You won!! you are the best!!")
+        $('.rotateMessage').html('Noooo YOU BEAT ME!!!!<br>Lets go again!')
     }
 
 }
@@ -305,6 +314,21 @@ $('.newgame').on('click', () => {
     console.log('clicked')
     cpuArray = []
     game.newgame()
+})
+$('.hardmode').on('click', () => {
+    if(!game.hardmode ){
+        game.hardmode = true
+        game.difficulty = .5
+        $('.textarea').html('welcome to the game! you have selected hard mode')
+        $('.rotateMessage').html('You must be confident!')
+
+    } else {
+        game.hardmode = false
+        game.difficulty = 1
+        $('.textarea').html('welcome to the game! you are on easy mode')
+        $('.rotateMessage').html("Guess I'll go easy on you")
+    }
+    
 })
 
 $('.musicmode').on('click',()=>{
