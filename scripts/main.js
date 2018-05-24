@@ -317,6 +317,8 @@ $('.hardmode').on('click', () => {
 
 $('.musicmode').on('click', () => {
     game.musicmode.musicMode()
+    game.difficulty = .25
+    console.log(game.difficulty)
     console.log("music init")
     game.musicmode.musicPlay = true
     console.log(game.musicmode.musicPlay)
