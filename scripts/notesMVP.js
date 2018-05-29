@@ -70,3 +70,100 @@
 // 	1.control on the gui functions and attach the other functions to the page as clickable items/objects
 
 // }
+
+
+
+
+bigarray =[ catarray, catarray1,catarray2,catarry3]
+
+catarray = [object, object,object,object]
+
+
+randomizer =(array)=>{ // may need  a second randomizer possibly a third
+	// randomize passed array
+	// save as a variable? vs write over array
+	}
+	// <= function should hold all of these..? .... KENN......
+	// NO THIS IS GOING TO BE RE USED LATER. TRY PUTTING THIS INSIDE A OBJECT ... DEON....
+
+	// 
+	let printBig =()=>{
+		 BigArry.forEach( (arrayitem,index)=>{
+			 $('parentdiv child[arrayitem]').html('arrayitem.name')
+		// <= GRATE SUDO CODE ...... KENN......
+			})
+	//$('BGarray[0]').append(rowone)
+	}
+
+	let catsprint =()=>{
+		catarray.foreach(()=>{
+			//randomizer(answerchoices) 
+			//.html
+			//Question: pushing to predesignated area by index number
+			// predegareaparent[i].html(question)
+
+			//answerchoices.foreach()=>{
+			// answer choices	predesignated area
+			//predegareaparent[i]>predegareachild[i].html(answerchoice[i])
+			//	}
+		})
+
+	}
+
+
+
+
+
+// Catergories.cat1.q1.also
+
+
+// Catergories = [
+//  {// index 0, start function here
+// 	category: cats,
+	
+// 	/* key*/q1:{ // inserted
+		
+// 		Q1: "writeoutquestion",
+// 		pts:100,
+// 		answer: "theanswer",
+// 		anschoices: [ "stuff","alsostuff", "morestuff"],
+// 		}
+// 	}//end function here
+
+
+// {
+// 	id: categoryname
+// 	Q3: writeoutquestion
+// 	pts:300
+// 	answer: the answer
+// 	anschoices: [ stuff,also stuff, more stuff]
+// },
+// ]
+
+// let cat1object = {
+
+// q1: {
+// 	id: categoryname,
+// 	Q1: writeoutquestion,
+// 	pts:100,
+// 	answer: theanswer,
+// 	anschoices: [ stuff,alsostuff, morestuff],
+// },
+
+// q2:{
+// 	id: categoryname
+// 	Q1: writeoutquestion
+// 	pts:200
+// 	answer: the answer
+// 	anschoices: [ stuff,also stuff, more stuff]
+// },
+
+// q3: {
+// 	id: categoryname,
+// 	Q3: writeoutquestion,
+// 	pts:300,
+// 	answer: the answer,
+// 	anschoices: [ stuff,alsostuff, morestuff],
+// },
+// }
+
